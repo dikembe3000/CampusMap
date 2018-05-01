@@ -4,7 +4,7 @@
 
 <head>
 
-<title>V</title>
+<title>VI</title>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -39,9 +39,19 @@
 	ext: 'png'
 }).addTo(map);
 	
-L.GeoJson(data,{
-	
-}).addTo(map);
+var icon = new L.icon({iconUrl:'images/map_marker.png'})
+
+function CampusInfo(feature, layer) {
+		layer.bindPopup("Site: " + feature.properties.feature + "Description: " + feature.properties.description) 
+		layer.setIcon (icon)
+	};
+
+	L.geoJson(mural, {
+		onEachFeature: CampusInfo
+		
+	}).addTo(mymap);
+
+
 
 </script>
 
